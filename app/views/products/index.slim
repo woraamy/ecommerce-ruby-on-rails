@@ -1,0 +1,31 @@
+h1 รายการสินค้าทั้งหมด #{@products.count} รายการ
+= link_to 'สร้างสินค้าใหม่', new_product_path
+div 
+    = form_tag  products_path, method: :get do 
+        = text_field_tag :search, @search
+        = submit_tag 'ค้นหา'
+
+table border='1'
+    thead
+        tr
+            th รูปสินค้า
+            th รหัสสินค้า
+            th ชื่อสินค้า
+            th ราคา
+            th จำนวน
+            th actions
+    tbody
+        - @products.each do |product|
+            tr
+                td 
+                    - if product.image.present?
+                        = image_tag product.image, height: 80
+                td = product.sku
+                td = product.name
+                td = product.price
+                td = product.stock
+                td 
+                    div = link_to 'แก้ไข', edit_product_path(product)
+                    div = button_to 'ลบ', product_path(product), method: :delete
+
+= paginate @products

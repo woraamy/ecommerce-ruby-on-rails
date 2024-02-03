@@ -1,0 +1,13 @@
+= form_with model: product , data: { turbo: false } do |form|
+    div = product.errors.full_messages.join(", ")
+    div รูปสินค้า
+    div = form.file_field :image
+    div รหัสสินค้า
+    div = form.text_field :sku
+    div ชื่อสินค้า
+    div = form.text_field :name
+    div ราคา
+    div = form.number_field :price
+    div จำนวน
+    div = form.number_field :price
+    div = submit_tag 'ยืนยัน'
